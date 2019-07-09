@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.2.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <!-- 开启注解扫描 -->
+    <!--<context:component-scan base-package="com.lrf.aop.test02"/>-->
+    <bean id="arithmeticCalculator" class="com.lrf.aop.test02.ArithmeticCalculator"/>
+    <bean id="loggingAspect" class="com.lrf.aop.test02.LoggingAspect"/>
+    <!-- 开启aop注解方式，此步骤s不能少，这样java类中的aop注解才会生效 -->
+    <aop:aspectj-autoproxy/>
+
+
+    <!--配置xml方式-->
+    <!--<bean id="arithmeticCalculator" class="com.lrf.aop.test02.ArithmeticCalculator" />
+    <bean id="loggingAspect" class="com.lrf.aop.test02.LoggingAspect" />
+    <aop:config>
+        <aop:aspect id="time" ref="loggingAspect">
+            &lt;!&ndash; 定义切点 &ndash;&gt;
+            <aop:pointcut id="embark" expression="execution(* *.saying(..))" />
+            &lt;!&ndash; 声明前置通知 (在切点方法被执行前调用) &ndash;&gt;
+            <aop:before method="sayHelloXML" pointcut-ref="embark"/>
+            &lt;!&ndash; 声明后置通知 (在切点方法被执行后调用) &ndash;&gt;
+            <aop:after method="sayGoodbeyXML" pointcut-ref="embark"/>
+        </aop:aspect>
+    </aop:config>-->
+
+</beans>
